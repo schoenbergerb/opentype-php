@@ -1,0 +1,21 @@
+{
+    "name": "schoenbergerb/opentype",
+
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Schoenbergerb\\opentype\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bernhard Schönberger",
+            "email": "schoenbergerb@mail.de",
+            "homepage": "https://www.schoenberger.be"
+        }
+    ],
+  "require": {
+    "ext-bcmath": "*"
+  }
+}
