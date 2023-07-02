@@ -2,6 +2,7 @@
 
 namespace Schoenbergerb\opentype\types\tables\cmap;
 
+use Schoenbergerb\opentype\exceptions\CmapFormatUnknownException;
 use Schoenbergerb\opentype\types\tables\AbstractTable;
 
 class Cmap extends AbstractTable
@@ -11,6 +12,9 @@ class Cmap extends AbstractTable
     public string $numberSubTables;
     public array $cmapTables = [];
 
+    /**
+     * @throws CmapFormatUnknownException
+     */
     protected function __construct($data)
     {
         $i = 0;
@@ -26,16 +30,19 @@ class Cmap extends AbstractTable
             $offsets[] = $this->getUInt32($data, $off);
         }
         for ($j = 0; $j < $this->numberSubTables; $j++) {
-            $off0 = $off = $offsets[$i];
+            $off = $offsets[$i];
             $format = $this->getUInt16($data, $off);
-            $length = $this->getUInt16($data, $off);
-            $version = $this->getUInt16($data, $off);
+            $parser = match ($format) {
+                0 => new CmapFormat0(),
+                2 => new CmapFormat2(),
+                4 => new CmapFormat4(),
+            };
 
-            $this->cmapTables[] = [
-                "format" => $format,
-                "length" => $length,
-                "version" => $version,
-            ];
+            if (!$parser) {
+                throw new CmapFormatUnknownException();
+            }
+
+            $this->cmapTables[] = $parser->parse($data, $offsets[$i]);
         }
     }
 }

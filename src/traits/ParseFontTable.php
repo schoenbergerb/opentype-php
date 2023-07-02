@@ -8,7 +8,7 @@ use Schoenbergerb\opentype\types\tables\hhea\Hhea;
 use Schoenbergerb\opentype\types\tables\AbstractTable;
 
 trait ParseFontTable {
-    private function parseTable($name, $fontData, $offset, $length): AbstractTable | null
+    private function parseTable($name, $fontData, $offset, $length, $checksum): AbstractTable | null
     {
         $data = substr($fontData, $offset, $length);
         return match ($name) {
@@ -17,5 +17,7 @@ trait ParseFontTable {
             'cmap' => Cmap::parse($data),
             default => null,
         };
+
+        // TODO: checksum check
     }
 }
