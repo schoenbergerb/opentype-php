@@ -39,19 +39,25 @@ class CmapFormat4 implements CmapFormat {
         $this->rangeShift = $this->getUInt16($data, $offset);
 
         $segCount = $this->segCountX2 / 2;
+
         for ($seg = 0; $seg < $segCount; $seg++) {
             $this->endCountMap[] = $this->getUInt16($data, $offset);
         }
+
         $this->skip($offset, 2); // Skip reserved
+
         for ($seg = 0; $seg < $segCount; $seg++) {
             $this->startCountMap[] = $this->getUInt16($data, $offset);
         }
+
         for ($seg = 0; $seg < $segCount; $seg++) {
             $this->idDeltaMap[] = $this->getUInt16($data, $offset);
         }
+
         for ($seg = 0; $seg < $segCount; $seg++) {
             $this->idRangeOffsetMap[] = $this->getUInt16($data, $offset);
         }
+
         while ($offset < $offsetStart + $this->length) {
             $this->glyphIdMap[] = $this->getUInt16($data, $offset);
         }
