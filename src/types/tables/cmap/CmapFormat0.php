@@ -2,10 +2,16 @@
 
 namespace schoenbergerb\opentype\types\tables\cmap;
 
+/**
+ * CMAP Format 0: Byte encoding table
+ * @see https://learn.microsoft.com/en-us/typography/opentype/spec/cmap#format-0-byte-encoding-table
+ */
 class CmapFormat0 implements CmapFormat {
 
-    public function parse($data, $offset)
+    public function parse($data, $offset): CmapFormat
     {
-        // TODO: Implement parse() method.
+        // TODO: implement
+
+        return $this;
     }
 }

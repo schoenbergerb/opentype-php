@@ -4,6 +4,10 @@ namespace schoenbergerb\opentype\types\tables\cmap;
 
 use schoenbergerb\opentype\traits\ParseBytes;
 
+/**
+ * CMAP Format 4: Segment mapping to delta values
+ * @see https://learn.microsoft.com/en-us/typography/opentype/spec/cmap#format-4-segment-mapping-to-delta-values
+ */
 class CmapFormat4 implements CmapFormat {
 
     use ParseBytes;
