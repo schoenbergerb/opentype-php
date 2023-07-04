@@ -1,8 +1,8 @@
 <?php
 
-namespace Schoenbergerb\opentype\traits;
+namespace schoenbergerb\opentype\traits;
 
-use Schoenbergerb\opentype\types\FontData;
+use schoenbergerb\opentype\types\FontData;
 
 trait ParseFontData
 {

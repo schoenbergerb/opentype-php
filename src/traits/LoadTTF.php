@@ -1,8 +1,8 @@
 <?php
-namespace Schoenbergerb\opentype\traits;
+namespace schoenbergerb\opentype\traits;
 
-use Schoenbergerb\opentype\exceptions\FontNotFoundException;
-use Schoenbergerb\opentype\exceptions\FontNotReadableException;
+use schoenbergerb\opentype\exceptions\FontNotFoundException;
+use schoenbergerb\opentype\exceptions\FontNotReadableException;
 
 trait LoadTTF {
 

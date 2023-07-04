@@ -1,6 +1,6 @@
 <?php
 
-namespace Schoenbergerb\opentype\types;
+namespace schoenbergerb\opentype\types;
 
 class FontData
 {

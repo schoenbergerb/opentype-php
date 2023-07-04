@@ -1,8 +1,8 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables\cmap;
+namespace schoenbergerb\opentype\types\tables\cmap;
 
 interface CmapFormat
 {
-    public function parse($data, $offsets);
+    public function parse($data, $offset);
 }

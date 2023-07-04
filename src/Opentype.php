@@ -1,20 +1,22 @@
 <?php
 
-namespace Schoenbergerb\opentype;
+namespace schoenbergerb\opentype;
 
-use Schoenbergerb\opentype\exceptions\FontNotFoundException;
-use Schoenbergerb\opentype\exceptions\FontNotReadableException;
-use Schoenbergerb\opentype\traits\LoadTTF;
-use Schoenbergerb\opentype\traits\ParseFontData;
-use Schoenbergerb\opentype\types\FontData;
+use schoenbergerb\opentype\exceptions\FontNotFoundException;
+use schoenbergerb\opentype\exceptions\FontNotReadableException;
+use schoenbergerb\opentype\traits\LoadTTF;
+use schoenbergerb\opentype\traits\ParseFontData;
 
 class Opentype
 {
-
     use LoadTTF, ParseFontData;
 
-    private string $fontPath;
-    private FontData $fontData;
+    public string $version;
+    public string $numTables;
+    public string $searchRange;
+    public string $entrySelector;
+    public string $rangeShift;
+    public array $tables = [];
 
     /**
      * @throws FontNotFoundException
@@ -22,19 +24,18 @@ class Opentype
      */
     public function __construct($path)
     {
-        $this->fontPath = $path;
-
         $rawData = $this->load($path);
-        $this->fontData = $this->parseFontData($rawData);
+        $fd = $this->parseFontData($rawData);
+
+        $this->version = $fd->version;
+        $this->numTables = $fd->numTables;
+        $this->searchRange = $fd->searchRange;
+        $this->entrySelector = $fd->entrySelector;
+        $this->rangeShift = $fd->rangeShift;
+        $this->tables = $fd->tables;
     }
 
-    public function getVersion(): string {
-        return $this->fontData->version;
-    }
-
-
-
-    public function save()
+    public function save($path)
     {
         // TODO: implement
     }

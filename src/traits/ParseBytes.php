@@ -1,6 +1,6 @@
 <?php
 
-namespace Schoenbergerb\opentype\traits;
+namespace schoenbergerb\opentype\traits;
 
 trait ParseBytes {
 

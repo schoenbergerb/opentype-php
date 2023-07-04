@@ -1,9 +1,9 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables\hhea;
+namespace schoenbergerb\opentype\types\tables\hhea;
 
-use Schoenbergerb\opentype\traits\ParseBytes;
-use Schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\traits\ParseBytes;
+use schoenbergerb\opentype\types\tables\AbstractTable;
 
 class Hhea extends AbstractTable
 {

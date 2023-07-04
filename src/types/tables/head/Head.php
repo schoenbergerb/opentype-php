@@ -1,8 +1,8 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables\head;
+namespace schoenbergerb\opentype\types\tables\head;
 
-use Schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\types\tables\AbstractTable;
 
 class Head extends AbstractTable
 {

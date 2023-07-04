@@ -1,11 +1,13 @@
 {
     "name": "schoenbergerb/opentype",
-
     "type": "library",
     "license": "MIT",
     "autoload": {
+        "psr-0": {
+            "schoenbergerb\\opentype\\": "src/"
+        },
         "psr-4": {
-            "Schoenbergerb\\opentype\\": "src/"
+            "schoenbergerb\\opentype\\": "src/"
         }
     },
     "authors": [

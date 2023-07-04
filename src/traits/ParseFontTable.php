@@ -1,11 +1,11 @@
 <?php
 
-namespace Schoenbergerb\opentype\traits;
+namespace schoenbergerb\opentype\traits;
 
-use Schoenbergerb\opentype\types\tables\cmap\Cmap;
-use Schoenbergerb\opentype\types\tables\head\Head;
-use Schoenbergerb\opentype\types\tables\hhea\Hhea;
-use Schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\types\tables\cmap\Cmap;
+use schoenbergerb\opentype\types\tables\head\Head;
+use schoenbergerb\opentype\types\tables\hhea\Hhea;
+use schoenbergerb\opentype\types\tables\AbstractTable;
 
 trait ParseFontTable {
     private function parseTable($name, $fontData, $offset, $length, $checksum): AbstractTable | null

@@ -1,8 +1,8 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables\cmap;
+namespace schoenbergerb\opentype\types\tables\cmap;
 
-use Schoenbergerb\opentype\traits\ParseBytes;
+use schoenbergerb\opentype\traits\ParseBytes;
 
 class CmapFormat4 implements CmapFormat {
 

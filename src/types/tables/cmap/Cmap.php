@@ -1,9 +1,9 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables\cmap;
+namespace schoenbergerb\opentype\types\tables\cmap;
 
-use Schoenbergerb\opentype\exceptions\CmapFormatUnknownException;
-use Schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\exceptions\CmapFormatUnknownException;
+use schoenbergerb\opentype\types\tables\AbstractTable;
 
 class Cmap extends AbstractTable
 {

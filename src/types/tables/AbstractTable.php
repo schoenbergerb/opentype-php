@@ -1,8 +1,8 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables;
+namespace schoenbergerb\opentype\types\tables;
 
-use Schoenbergerb\opentype\traits\ParseBytes;
+use schoenbergerb\opentype\traits\ParseBytes;
 
 abstract class AbstractTable
 {

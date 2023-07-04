@@ -1,10 +1,10 @@
 <?php
 
-namespace Schoenbergerb\opentype\types\tables\cmap;
+namespace schoenbergerb\opentype\types\tables\cmap;
 
 class CmapFormat0 implements CmapFormat {
 
-    public function parse($data, $offsets)
+    public function parse($data, $offset)
     {
         // TODO: Implement parse() method.
     }
