@@ -4,7 +4,7 @@ namespace schoenbergerb\opentype\traits;
 use schoenbergerb\opentype\exceptions\FontNotFoundException;
 use schoenbergerb\opentype\exceptions\FontNotReadableException;
 
-trait LoadTTF {
+trait LoadFile {
 
     /**
      * @throws FontNotFoundException

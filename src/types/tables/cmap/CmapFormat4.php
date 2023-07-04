@@ -8,22 +8,50 @@ class CmapFormat4 implements CmapFormat {
 
     use ParseBytes;
 
-    public function parse($data, $offset): array
+    public int $format;
+    public int $length;
+    public int $language;
+    public int $segCountX2;
+    public int $searchRange;
+    public int $entrySelector;
+    public int $rangeShift;
+
+    public array $endCountMap;
+    public array $startCountMap;
+    public array $idDeltaMap;
+    public array $idRangeOffsetMap;
+    public array $glyphIdMap;
+
+    public function parse($data, $offset): CmapFormat
     {
-        return [
-            "format" => $this->getUInt16($data, $offset),
-            "length" => $this->getUInt16($data, $offset),
-            "language" => $this->getUInt16($data, $offset),
-            "segCountX2" => $this->getUInt16($data, $offset),
-            "searchRange" => $this->getUInt16($data, $offset),
-            "entrySelector" => $this->getUInt16($data, $offset),
-            "rangeShift" => $this->getUInt16($data, $offset),
-            "endCode[segCount]" => $this->getUInt16($data, $offset),
-            "reservedPad" => $this->getUInt16($data, $offset),
-            "startCode[segCount]" => $this->getUInt16($data, $offset),
-            "idDelta[segCount]" => $this->getUInt16($data, $offset),
-            "idRangeOffset[segCount]" => $this->getUInt16($data, $offset),
-            "glyphIndexArray[variable]" => $this->getUInt16($data, $offset),
-        ];
+        $offsetStart = $offset;
+
+        $this->format = $this->getUInt16($data, $offset);
+        $this->length = $this->getUInt16($data, $offset);
+        $this->language = $this->getUInt16($data, $offset);
+        $this->segCountX2 = $this->getUInt16($data, $offset);
+        $this->searchRange = $this->getUInt16($data, $offset);
+        $this->entrySelector = $this->getUInt16($data, $offset);
+        $this->rangeShift = $this->getUInt16($data, $offset);
+
+        $segCount = $this->segCountX2 / 2;
+        for ($seg = 0; $seg < $segCount; $seg++) {
+            $this->endCountMap[] = $this->getUInt16($data, $offset);
+        }
+        $this->skip($offset, 2); // Skip reserved
+        for ($seg = 0; $seg < $segCount; $seg++) {
+            $this->startCountMap[] = $this->getUInt16($data, $offset);
+        }
+        for ($seg = 0; $seg < $segCount; $seg++) {
+            $this->idDeltaMap[] = $this->getUInt16($data, $offset);
+        }
+        for ($seg = 0; $seg < $segCount; $seg++) {
+            $this->idRangeOffsetMap[] = $this->getUInt16($data, $offset);
+        }
+        while ($offset < $offsetStart + $this->length) {
+            $this->glyphIdMap[] = $this->getUInt16($data, $offset);
+        }
+
+        return $this;
     }
 }

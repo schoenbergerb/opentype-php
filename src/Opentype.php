@@ -4,19 +4,20 @@ namespace schoenbergerb\opentype;
 
 use schoenbergerb\opentype\exceptions\FontNotFoundException;
 use schoenbergerb\opentype\exceptions\FontNotReadableException;
-use schoenbergerb\opentype\traits\LoadTTF;
+use schoenbergerb\opentype\traits\LoadFile;
 use schoenbergerb\opentype\traits\ParseFontData;
+use schoenbergerb\opentype\types\FontDataTables;
 
 class Opentype
 {
-    use LoadTTF, ParseFontData;
+    use LoadFile, ParseFontData;
 
     public string $version;
     public string $numTables;
     public string $searchRange;
     public string $entrySelector;
     public string $rangeShift;
-    public array $tables = [];
+    public FontDataTables $tables;
 
     /**
      * @throws FontNotFoundException

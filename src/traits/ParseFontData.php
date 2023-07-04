@@ -3,6 +3,7 @@
 namespace schoenbergerb\opentype\traits;
 
 use schoenbergerb\opentype\types\FontData;
+use schoenbergerb\opentype\types\FontDataTables;
 
 trait ParseFontData
 {
@@ -18,13 +19,14 @@ trait ParseFontData
         $fontData->searchRange = $this->getUInt16($data, $i);
         $fontData->entrySelector = $this->getUInt16($data, $i);
         $fontData->rangeShift = $this->getUInt16($data, $i);
+        $fontData->tables = new FontDataTables();
 
         for ($j = 0; $j < $fontData->numTables; $j++) {
             $name = $this->getRaw($data, $i, 4);
-            $checksum = self::getUInt32($data, $i);
+            $checksum = $this->getUInt32($data, $i);
             $offset = $this->getUInt32($data, $i);
             $length = $this->getUInt32($data, $i);
-            $fontData->tables[$name] = $this->parseTable($name, $data, $offset, $length, $checksum);
+            $fontData->tables->{strtoupper($name)} = $this->parseTable($name, $data, $offset, $length, $checksum);
         }
         return $fontData;
     }

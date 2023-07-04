@@ -14,6 +14,8 @@ class CmapFormat2 implements CmapFormat {
 
         return [
             "format" => $this->getUInt16($data, $i),
+            "length" => $this->getUInt16($data, $i),
+            "language" => $this->getUInt16($data, $i),
         ];
     }
 }
