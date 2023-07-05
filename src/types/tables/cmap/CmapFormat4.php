@@ -25,9 +25,14 @@ class CmapFormat4 implements CmapFormat {
     public array $idDeltaMap;
     public array $idRangeOffsetMap;
     public array $glyphIdMap;
+    public array $platformIds;
+    public array $platformSpecificIds;
 
-    public function parse($data, $offset): CmapFormat
+    public function parse($data, $offset, $platformIds, $platformSpecificIds): CmapFormat
     {
+        $this->platformIds = $platformIds;
+        $this->platformSpecificIds = $platformSpecificIds;
+
         $offsetStart = $offset;
 
         $this->format = $this->getUInt16($data, $offset);

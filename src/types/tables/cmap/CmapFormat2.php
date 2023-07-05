@@ -12,7 +12,7 @@ class CmapFormat2 implements CmapFormat {
 
     use ParseBytes;
 
-    public function parse($data, $offset): CmapFormat
+    public function parse($data, $offset, $platformIds, $platformSpecificIds): CmapFormat
     {
         // TODO: implement
 

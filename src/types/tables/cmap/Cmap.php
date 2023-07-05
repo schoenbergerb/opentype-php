@@ -3,7 +3,10 @@
 namespace schoenbergerb\opentype\types\tables\cmap;
 
 use schoenbergerb\opentype\exceptions\CmapFormatUnknownException;
+use schoenbergerb\opentype\types\Platform;
 use schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\types\UnicodePlatform;
+use schoenbergerb\opentype\types\WindowsPlatform;
 
 class Cmap extends AbstractTable
 {
@@ -21,12 +24,19 @@ class Cmap extends AbstractTable
         $this->version = $this->getUInt16($data, $off);
         $this->numberSubTables = $this->getUInt16($data, $off);
 
-        $platformIDs = array();
-        $platformSpecificIDs = array();
+        $platformIds = array();
+        $platformSpecificIds = array();
         $offsets = array();
         for ($j = 0; $j < $this->numberSubTables; $j++) {
-            $platformIDs[] = $this->getUInt16($data, $off);
-            $platformSpecificIDs[] = $this->getUInt16($data, $off);
+            $platformId = Platform::from($this->getUInt16($data, $off));
+            $platformIds[] = $platformId;
+
+            $platformSpecificIds[] = match ($platformId) {
+                Platform::Unicode => UnicodePlatform::from($this->getUInt16($data, $off)),
+                Platform::Microsoft => WindowsPlatform::from($this->getUInt16($data, $off)),
+                default => null
+            };
+
             $offsets[] = $this->getUInt32($data, $off);
         }
         for ($j = 0; $j < $this->numberSubTables; $j++) {
@@ -42,7 +52,7 @@ class Cmap extends AbstractTable
                 throw new CmapFormatUnknownException();
             }
 
-            $this->cmapTables[] = $parser->parse($data, $offsets[$i]);
+            $this->cmapTables[] = $parser->parse($data, $offsets[$i], $platformIds, $platformSpecificIds);
         }
     }
 }
