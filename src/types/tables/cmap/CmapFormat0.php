@@ -10,7 +10,7 @@ class CmapFormat0 implements CmapFormat {
 
     public function parse($data, $offset, $platformIds, $platformSpecificIds): CmapFormat
     {
-        // TODO: implement
+        // TODO: implement (example needed)
 
         return $this;
     }

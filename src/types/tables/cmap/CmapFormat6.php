@@ -5,17 +5,17 @@ namespace schoenbergerb\opentype\types\tables\cmap;
 use schoenbergerb\opentype\traits\ParseBytes;
 
 /**
- * CMAP Format 2: High-byte mapping through table
- * @see https://learn.microsoft.com/en-us/typography/opentype/spec/cmap#format-2-high-byte-mapping-through-table
+ * CMAP Format 6: Trimmed table mapping
+ * @see https://learn.microsoft.com/en-us/typography/opentype/spec/cmap#format-6-trimmed-table-mapping
  */
-class CmapFormat2 implements CmapFormat {
+class CmapFormat6 implements CmapFormat {
 
     use ParseBytes;
 
+
     public function parse($data, $offset, $platformIds, $platformSpecificIds): CmapFormat
     {
-        // TODO: implement (example needed)
-
+        // TODO: implement
         return $this;
     }
 }
