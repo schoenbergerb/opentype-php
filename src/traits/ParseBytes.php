@@ -25,6 +25,11 @@ trait ParseBytes {
         }
     }
 
+    protected function getUInt8($b, &$i): int
+    {
+        return unpack('C', $b[$i++])[1];
+    }
+
     protected function getInt16($b, &$i): float|int
     {
         $num = self::getUInt16($b, $i);
@@ -65,6 +70,10 @@ trait ParseBytes {
 
     protected function getFixed($b, &$i): string
     {
+        if (!$i) {
+            $i = 0;
+        }
+
         $b1 = ord($b[$i++]);
         $b2 = ord($b[$i++]);
         $b3 = ord($b[$i++]);

@@ -10,7 +10,7 @@ trait LoadFile {
      * @throws FontNotFoundException
      * @throws FontNotReadableException
      */
-    public function load(string $path): string
+    protected function load(string $path): string
     {
         if (!file_exists($path)) {
             throw new FontNotFoundException();

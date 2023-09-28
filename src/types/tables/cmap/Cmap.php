@@ -21,26 +21,26 @@ class Cmap extends AbstractTable
     protected function __construct($data)
     {
         $i = 0;
-        $this->version = $this->getUInt16($data, $off);
-        $this->numberSubTables = $this->getUInt16($data, $off);
+        $this->version = $this->getUInt16($data, $i);
+        $this->numberSubTables = $this->getUInt16($data, $i);
 
         $platformIds = array();
         $platformSpecificIds = array();
         $offsets = array();
         for ($j = 0; $j < $this->numberSubTables; $j++) {
-            $platformId = Platform::from($this->getUInt16($data, $off));
+            $platformId = Platform::from($this->getUInt16($data, $i));
             $platformIds[] = $platformId;
 
             $platformSpecificIds[] = match ($platformId) {
-                Platform::Unicode => UnicodePlatform::from($this->getUInt16($data, $off)),
-                Platform::Microsoft => WindowsPlatform::from($this->getUInt16($data, $off)),
+                Platform::Unicode => UnicodePlatform::from($this->getUInt16($data, $i)),
+                Platform::Microsoft => WindowsPlatform::from($this->getUInt16($data, $i)),
                 default => null
             };
 
-            $offsets[] = $this->getUInt32($data, $off);
+            $offsets[] = $this->getUInt32($data, $i);
         }
         for ($j = 0; $j < $this->numberSubTables; $j++) {
-            $off = $offsets[$i];
+            $off = $offsets[$j];
             $format = $this->getUInt16($data, $off);
             $parser = match ($format) {
                 0 => new CmapFormat0(),
@@ -52,7 +52,7 @@ class Cmap extends AbstractTable
                 throw new CmapFormatUnknownException();
             }
 
-            $this->cmapTables[] = $parser->parse($data, $offsets[$i], $platformIds, $platformSpecificIds);
+            $this->cmapTables[] = $parser->parse($data, $offsets[$j], $platformIds, $platformSpecificIds);
         }
     }
 }

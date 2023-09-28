@@ -8,8 +8,9 @@ abstract class AbstractTable
 {
     use ParseBytes;
 
-    public static function parse($data) {
+    public static function parse() {
         $class = get_called_class();
-        return new $class($data);
+        $args = func_get_args();
+        return new $class(...$args);
     }
 }
