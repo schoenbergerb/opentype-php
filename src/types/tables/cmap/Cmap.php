@@ -46,6 +46,7 @@ class Cmap extends AbstractTable
                 0 => new CmapFormat0(),
                 2 => new CmapFormat2(),
                 4 => new CmapFormat4(),
+                6 => new CmapFormat6(),
             };
 
             if (!$parser) {
