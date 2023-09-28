@@ -12,10 +12,25 @@ class CmapFormat6 implements CmapFormat {
 
     use ParseBytes;
 
+    public int $format;
+    public int $length;
+    public int $language;
+    public int $firstCode;
+    public int $entryCount;
+    public array $glyphIdArray = [];
 
     public function parse($data, $offset, $platformIds, $platformSpecificIds): CmapFormat
     {
-        // TODO: implement
+        $this->format = $this->getUInt16($data, $offset);
+        $this->length = $this->getUInt16($data, $offset);
+        $this->language = $this->getUInt16($data, $offset);
+        $this->firstCode = $this->getUInt16($data, $offset);
+        $this->entryCount = $this->getUInt16($data, $offset);
+
+        for ($i = 0; $i < $this->entryCount; $i++) {
+            $this->glyphIdArray[] = $this->getUInt16($data, $offset);
+        }
+
         return $this;
     }
 }

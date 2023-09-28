@@ -52,6 +52,12 @@ trait ParseBytes {
         $b[$i++] = chr($val & 0xff);
     }
 
+    protected function getUInt24(&$data, &$offset): int {
+        $value = (ord($data[$offset]) << 16) | (ord($data[$offset + 1]) << 8) | ord($data[$offset + 2]);
+        $offset += 3; // Move the offset by 3 bytes
+        return $value;
+    }
+
     protected function getUInt32($b, &$i): int
     {
         $ret = '0';
@@ -135,4 +141,11 @@ trait ParseBytes {
         $this->setUInt16($b, $i, $val);
     }
 
+    protected function getBytes(&$b, &$i, $n): array {
+        $a = array_fill(0, $n, 0);
+        for ($j = 0; $j < $n; $j++, $i++) {
+            $a[$j] = ord($b[$i]);
+        }
+        return $a;
+    }
 }
