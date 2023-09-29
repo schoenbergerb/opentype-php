@@ -48,6 +48,19 @@ trait ParseBytes {
     }
 
     /**
+     * Retrieves a signed 8-bit integer from the byte stream.
+     *
+     * @param string $b The byte stream.
+     * @param int    $i Reference to the current index in the byte stream.
+     * @return int The retrieved signed 8-bit integer.
+     */
+    protected function getInt8($b, &$i): int
+    {
+        $val = ord($b[$i++]);
+        return $val >= 128 ? $val - 256 : $val;
+    }
+
+    /**
      * Retrieves an 8-bit unsigned integer from the byte stream.
      *
      * @param string $b The byte stream.
