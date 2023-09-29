@@ -47,6 +47,11 @@ class Cmap extends AbstractTable
                 2 => new CmapFormat2(),
                 4 => new CmapFormat4(),
                 6 => new CmapFormat6(),
+                8 => new CmapFormat8(),
+                10 => new CmapFormat10(),
+                12 => new CmapFormat12(),
+                13 => new CmapFormat13(),
+                14 => new CmapFormat14(),
             };
 
             if (!$parser) {
