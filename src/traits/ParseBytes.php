@@ -25,6 +25,12 @@ trait ParseBytes {
         }
     }
 
+    protected function getInt8($data, &$i): int
+    {
+        $byte = ord($data[$i++]);
+        return ($byte >= 128) ? ($byte - 256) : $byte;
+    }
+
     protected function getUInt8($b, &$i): int
     {
         return unpack('C', $b[$i++])[1];
@@ -130,7 +136,6 @@ trait ParseBytes {
     {
         $this->setInt16($b, $i, $val);
     }
-
 
     protected function getUFword($b, &$i): float|int
     {
