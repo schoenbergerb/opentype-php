@@ -43,7 +43,7 @@ class Glyf extends AbstractTable
             $endpoint = $this->getUInt16($data, $index);
             $instructionLength = $this->getUInt16($data, $index);
 
-            for ($j = 0; $j < $instructionLength; $j++) {
+            for ($j = 0; $j < $instructionLength - 1; $j++) {
                 $instructions[] = $this->getUInt8($data, $index);
             }
         }

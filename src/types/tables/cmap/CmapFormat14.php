@@ -24,7 +24,7 @@ class CmapFormat14 implements CmapFormat {
         $this->numVarSelectorRecords = $this->getUInt32($data, $offset);
 
         for ($i = 0; $i < $this->numVarSelectorRecords; $i++) {
-            $varSelector = $this->getUInt24($data, $offset); // Assuming you have a method to read 24-bit values
+            $varSelector = $this->getUInt24($data, $offset);
             $defaultUVSOffset = $this->getUInt32($data, $offset);
             $nonDefaultUVSOffset = $this->getUInt32($data, $offset);
             $this->varSelectorRecords[] = [
