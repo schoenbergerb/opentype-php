@@ -3,6 +3,7 @@
 namespace schoenbergerb\opentype\traits;
 
 use schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\types\tables\cblc\Cblc;
 use schoenbergerb\opentype\types\tables\cmap\Cmap;
 use schoenbergerb\opentype\types\tables\gdef\Gdef;
 use schoenbergerb\opentype\types\tables\glyf\Glyf;
@@ -24,6 +25,7 @@ trait   ParseFontTable {
             'loca' => Loca::parse($data, $this->tables),
             'post' => Post::parse($data, $this),
             'glyf' => Glyf::parse($data, $this),
+            'cblc' => Cblc::parse($data, $this),
             default => null,
         };
 

@@ -2,6 +2,7 @@
 
 namespace schoenbergerb\opentype\types;
 
+use schoenbergerb\opentype\types\tables\cblc\CBLC;
 use schoenbergerb\opentype\types\tables\cmap\Cmap;
 use schoenbergerb\opentype\types\tables\gdef\Gdef;
 use schoenbergerb\opentype\types\tables\head\Head;
@@ -15,4 +16,5 @@ class FontDataTables
     public Cmap $CMAP;
     public Gdef $GDEF;
     public Loca $LOCA;
+    public Cblc $CBLC;
 }
