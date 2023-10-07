@@ -1,6 +1,8 @@
 <?php
 
-namespace schoenbergerb\opentype\types\tables;
+namespace schoenbergerb\opentype\types\tables\vorg;
+
+use schoenbergerb\opentype\types\tables\AbstractTable;
 
 class VORG extends AbstractTable
 {
