@@ -2,8 +2,8 @@
 
 namespace schoenbergerb\opentype\types\tables\loca;
 
+use schoenbergerb\opentype\Opentype;
 use schoenbergerb\opentype\traits\ParseBytes;
-use schoenbergerb\opentype\types\FontDataTables;
 use schoenbergerb\opentype\types\tables\AbstractTable;
 
 class   Loca extends AbstractTable
@@ -12,10 +12,10 @@ class   Loca extends AbstractTable
 
     public array $offsets;
 
-    protected function __construct($data, FontDataTables $tables)
+    protected function __construct($data, Opentype $self)
     {
-        $format = $tables->HEAD->indexToLocFormat;
-        $numGlyphs = $tables->CMAP->numberSubTables;
+        $format = $self->tables->HEAD->indexToLocFormat;
+        $numGlyphs = $self->tables->CMAP->numberSubTables;
 
         $i = 0;
         $nOffsets = $this->getUInt16($data, $i);

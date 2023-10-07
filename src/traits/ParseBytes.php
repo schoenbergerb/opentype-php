@@ -292,4 +292,9 @@ trait ParseBytes {
         }
         return $a;
     }
+
+    protected function getString(&$data, &$i, $n): string {
+        $string = substr($data, $i, $n);
+        return str_replace("\0", "", $string);
+    }
 }
