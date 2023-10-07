@@ -293,8 +293,17 @@ trait ParseBytes {
         return $a;
     }
 
-    protected function getString(&$data, &$i, $n): string {
-        $string = substr($data, $i, $n);
+    /**
+     * Retrieves a string from the byte stream.
+     *
+     * @param string $b Reference to the byte stream.
+     * @param int    $i Reference to the current index in the byte stream.
+     * @param int    $n The number of bytes to retrieve.
+     * @return string   The retrieved string.
+     */
+    protected function getString(&$b, &$i, $n): string
+    {
+        $string = substr($b, $i, $n);
         return str_replace("\0", "", $string);
     }
 }
