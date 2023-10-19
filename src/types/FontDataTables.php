@@ -2,6 +2,7 @@
 
 namespace schoenbergerb\opentype\types;
 
+use schoenbergerb\opentype\types\tables\base\BASE;
 use schoenbergerb\opentype\types\tables\cblc\CBLC;
 use schoenbergerb\opentype\types\tables\cmap\Cmap;
 use schoenbergerb\opentype\types\tables\cvar\CVAR;
@@ -16,6 +17,7 @@ use schoenbergerb\opentype\types\tables\VORG;
 class FontDataTables
 {
     public Head $HEAD;
+    public BASE $BASE;
     public Hhea $HHEA;
     public Cmap $CMAP;
     public Gdef $GDEF;

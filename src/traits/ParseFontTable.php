@@ -3,6 +3,7 @@
 namespace schoenbergerb\opentype\traits;
 
 use schoenbergerb\opentype\types\tables\AbstractTable;
+use schoenbergerb\opentype\types\tables\base\BASE;
 use schoenbergerb\opentype\types\tables\cblc\Cblc;
 use schoenbergerb\opentype\types\tables\cmap\Cmap;
 use schoenbergerb\opentype\types\tables\cvar\CVAR;
@@ -23,19 +24,21 @@ trait ParseFontTable {
     {
         $data = substr($fontData, $offset, $length);
         return match (strtolower($name)) {
+            'base' => BASE::parse($data, $this),
+            'cblc' => Cblc::parse($data, $this),
             'cmap' => Cmap::parse($data, $this),
+            'cvar' => CVAR::parse($data, $this),
+            'cvt ' => CVT::parse($data, $this),
             'gdef' => Gdef::parse($data, $this),
+            'glyf' => Glyf::parse($data, $this),
             'head' => Head::parse($data, $this),
             'hhea' => Hhea::parse($data, $this),
             'loca' => Loca::parse($data, $this),
-            'post' => Post::parse($data, $this),
-            'glyf' => Glyf::parse($data, $this),
-            'cblc' => Cblc::parse($data, $this),
-            'vorg' => VORG::parse($data, $this),
-            'cvar' => CVAR::parse($data, $this),
-            'prep' => PREP::parse($data, $this),
-            'cvt '  => CVT::parse($data, $this),
             'name' => NAME::parse($data, $this),
+            'post' => Post::parse($data, $this),
+            'prep' => PREP::parse($data, $this),
+            'vorg' => VORG::parse($data, $this),
+
             default => null,
         };
 
